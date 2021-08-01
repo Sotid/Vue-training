@@ -13,7 +13,7 @@ history: createWebHistory(),
         {path: '/', redirect: '/coaches'}, ///Redirect from /
 
         {path: '/coaches', component:CoachesList},
-        {path: '/coaches/:id', component:CoachDetails, children: [
+        {path: '/coaches/:id', component:CoachDetails, props:true, children: [
             {path: 'contact', component:ContactCoaches}, ///Nested route so as to get the id /coaches/id/contact
 
         ] },
