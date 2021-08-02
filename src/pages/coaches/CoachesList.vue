@@ -1,3 +1,4 @@
+
 <template>
   <section>
     <coach-filter @change-filter="setFilters"></coach-filter>
@@ -6,7 +7,9 @@
     <base-card>
       <div class="controls">
         <base-button mode="outline">Refresh</base-button>
-        <base-button link to="/register">Register as Coach</base-button>
+        <base-button link to="/register" v-if="!isCoach"
+          >Register as Coach</base-button
+        >
       </div>
       <ul v-if="hasCoaches">
         <coach-item
@@ -23,7 +26,6 @@
     </base-card>
   </section>
 </template>
-
 <script>
 import CoachItem from '../../components/coaches/coachItem';
 import BaseButton from '../../components/UI/BaseButton.vue';
@@ -45,6 +47,10 @@ export default {
     };
   },
   computed: {
+    isCoach() {
+      return this.$store.getters['coaches/isCoach'];
+    },
+
     filteredCoaches() {
       const coaches = this.$store.getters['coaches/coaches']; //namespace/getterName
 
